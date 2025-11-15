@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import img from './images/sky.webp';
+import img from './images/p2.jpg';
 import {
   WiThermometer,
   WiHumidity,
@@ -49,13 +49,15 @@ const WeatherApp = () => {
 
   return (
     <div
-      className="flex h-screen w-screen bg-cover bg-center text-white overflow-y-auto"
+      className="flex min-h-screen w-full bg-cover bg-center text-white overflow-y-auto"
       style={{ backgroundImage: `url(${img})` }}
     >
-      <div className="flex-1 p-10 bg-black/40">
-        <div className="flex justify-between items-center mb-12">
+      <div className="flex-1 p-4 sm:p-10 bg-black/40">
+        
+        {/* HEADER */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 space-y-6 sm:space-y-0">
           <div>
-            <h2 className="text-4xl font-extrabold tracking-wide drop-shadow-lg">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wide drop-shadow-lg">
               {data?.name || 'Search a city'}
             </h2>
             <p className="text-white/70 text-sm mt-1">
@@ -69,13 +71,13 @@ const WeatherApp = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="flex gap-3 bg-black/60 border border-white/20 px-4 py-2 rounded-full shadow-xl"
+            className="flex gap-3 bg-black/60 border border-white/20 px-4 py-2 rounded-full shadow-xl w-full sm:w-auto"
           >
             <input
               type="search"
               value={search}
               onChange={handleChange}
-              className="px-3 py-1 rounded-full text-white bg-transparent focus:outline-none placeholder-white/60"
+              className="px-3 py-1 rounded-full text-white bg-transparent focus:outline-none placeholder-white/60 w-full sm:w-auto"
               placeholder="Search city..."
             />
             <button
@@ -90,8 +92,8 @@ const WeatherApp = () => {
         {data && (
           <>
             {/* MAIN TEMPERATURE */}
-            <div className="text-center mb-20">
-              <h1 className="text-7xl font-extrabold drop-shadow-2xl">
+            <div className="text-center mb-16 sm:mb-20 px-2">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold drop-shadow-2xl">
                 {data.main.temp}°F
               </h1>
 
@@ -99,21 +101,22 @@ const WeatherApp = () => {
                 High {data.main.temp_max}°F / Low {data.main.temp_min}°F
               </p>
 
-              <p className="text-2xl mt-3 text-white font-semibold capitalize tracking-wide">
+              <p className="text-xl sm:text-2xl mt-3 text-white font-semibold capitalize tracking-wide">
                 {data.weather[0].description}
               </p>
             </div>
 
             {/* WEATHER CARDS */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-white/90">
-              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl aspect-square flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-white/90">
+              
+              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl min-h-[200px] flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
                 <WiThermometer size={50} className="text-red-400" />
                 <p className="font-bold text-xl">Temperature</p>
                 <p>Actual: {data.main.temp}°F</p>
                 <p>Feels Like: {data.main.feels_like}°F</p>
               </div>
 
-              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl aspect-square flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
+              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl min-h-[200px] flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
                 <div className="flex space-x-2 items-center text-blue-300">
                   <WiHumidity size={40} />
                   <WiBarometer size={40} />
@@ -123,14 +126,14 @@ const WeatherApp = () => {
                 <p>Pressure: {data.main.pressure} hPa</p>
               </div>
 
-              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl aspect-square flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
+              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl min-h-[200px] flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
                 <WiStrongWind size={50} className="text-sky-400" />
                 <p className="font-bold text-xl">Air Conditions</p>
                 <p>Wind: {data.wind.speed} mph</p>
                 <p>Visibility: {data.visibility / 1000} km</p>
               </div>
 
-              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl aspect-square flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
+              <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl min-h-[200px] flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
                 <div className="flex space-x-3 items-center">
                   <WiDaySunny size={38} className="text-yellow-400" />
                   <WiCloudy size={38} className="text-blue-300" />
@@ -143,13 +146,14 @@ const WeatherApp = () => {
             </div>
 
             {/* FORECAST CHART */}
-            <div className="mt-20 bg-black/50 border border-white/10 p-8 rounded-2xl shadow-xl">
-              <h2 className="text-2xl font-bold mb-6 text-center">
+            <div className="mt-16 sm:mt-20 bg-black/50 border border-white/10 p-6 sm:p-8 rounded-2xl shadow-xl">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">
                 Upcoming Hours Forecast
               </h2>
-              <ResponsiveContainer width="100%" height={320}>
+
+              <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={forecast}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="white/10" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
                   <XAxis dataKey="time" stroke="white" />
                   <YAxis stroke="white" />
                   <Tooltip
