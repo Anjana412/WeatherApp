@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import img from './images/p4.jpg';
-import {
-  WiThermometer,
-  WiHumidity,
-  WiBarometer,
-  WiStrongWind,
-  WiDaySunny,
-  WiCloudy,
-} from 'react-icons/wi';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-} from 'recharts';
+import { WiThermometer, WiHumidity, WiBarometer, WiStrongWind, WiDaySunny,WiCloudy,} from 'react-icons/wi';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,} from 'recharts';
 
 const WeatherApp = () => {
   const [data, setData] = useState();
@@ -50,7 +35,7 @@ const WeatherApp = () => {
   return (
     <div
       className="flex min-h-screen w-full bg-cover bg-center text-white overflow-y-auto"
-      style={{ backgroundImage: `url(${img})` }}
+      style={{ backgroundImage: `url(${img})`}}
     >
       <div className="flex-1 p-4 sm:p-10 bg-black/40">
         
@@ -91,7 +76,6 @@ const WeatherApp = () => {
 
         {data && (
           <>
-            {/* MAIN TEMPERATURE */}
             <div className="text-center mb-16 sm:mb-20 px-2">
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold drop-shadow-2xl">
                 {data.main.temp}°F
@@ -106,7 +90,6 @@ const WeatherApp = () => {
               </p>
             </div>
 
-            {/* WEATHER CARDS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-white/90">
               
               <div className="bg-black/50 border border-white/10 p-7 rounded-2xl shadow-xl min-h-[200px] flex flex-col justify-center items-center space-y-4 hover:bg-black/60 transition-all">
@@ -145,7 +128,6 @@ const WeatherApp = () => {
               </div>
             </div>
 
-            {/* FORECAST CHART */}
             <div className="mt-16 sm:mt-20 bg-black/50 border border-white/10 p-6 sm:p-8 rounded-2xl shadow-xl">
               <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">
                 Upcoming Hours Forecast
