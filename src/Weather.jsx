@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import img from './images/p2.jpg';
+import img from './images/p4.jpg';
 import {
   WiThermometer,
   WiHumidity,
